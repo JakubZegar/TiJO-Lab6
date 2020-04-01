@@ -13,5 +13,7 @@ public class MovieCounterDto implements Serializable {
         return counter;
     }
 
-    // TODO: W razie potrzeby prosze dokonczyc implementacje...
+    public void setCounter(Long counter) {
+        this.counter = counter;
+    }
 }
