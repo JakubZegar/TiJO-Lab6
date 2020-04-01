@@ -12,4 +12,6 @@ public interface MovieService {
     void creatMovie(CreateMovieDto createMovieDto);
 
     void deleteMovie(Long movieId);
+
+    long countMovies();
 }

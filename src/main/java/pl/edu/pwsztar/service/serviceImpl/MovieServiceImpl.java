@@ -51,4 +51,9 @@ public class MovieServiceImpl implements MovieService {
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
         movieOptional.ifPresent(movieRepository::delete);
     }
+
+    @Override
+    public long countMovies() {
+        return movieRepository.count();
+    }
 }
