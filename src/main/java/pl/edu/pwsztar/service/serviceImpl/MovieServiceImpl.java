@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pl.edu.pwsztar.domain.converter.Converter;
 import pl.edu.pwsztar.domain.dto.CreateMovieDto;
+import pl.edu.pwsztar.domain.dto.MovieCounterDto;
 import pl.edu.pwsztar.domain.dto.MovieDto;
 import pl.edu.pwsztar.domain.entity.Movie;
 import pl.edu.pwsztar.domain.repository.MovieRepository;
@@ -23,15 +24,18 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
     private final Converter<CreateMovieDto, Movie> movieConverter;
     private final Converter<List<Movie>, List<MovieDto>> movieListConverter;
+    private final Converter<Long,MovieCounterDto> movieCounterConverter;
 
     @Autowired
     public MovieServiceImpl(MovieRepository movieRepository,
                             Converter<CreateMovieDto, Movie> movieConverter,
-                            Converter<List<Movie>, List<MovieDto>> movieListConverter) {
+                            Converter<List<Movie>, List<MovieDto>> movieListConverter,
+                            Converter<Long, MovieCounterDto> movieCounterConverter) {
 
         this.movieRepository = movieRepository;
         this.movieConverter = movieConverter;
         this.movieListConverter = movieListConverter;
+        this.movieCounterConverter = movieCounterConverter;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public long countMovies() {
-        return movieRepository.count();
+    public MovieCounterDto countMovies() {
+        return  movieCounterConverter.convert(movieRepository.count());
     }
 }

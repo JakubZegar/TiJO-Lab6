@@ -1,6 +1,7 @@
 package pl.edu.pwsztar.service;
 
 import pl.edu.pwsztar.domain.dto.CreateMovieDto;
+import pl.edu.pwsztar.domain.dto.MovieCounterDto;
 import pl.edu.pwsztar.domain.dto.MovieDto;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface MovieService {
 
     void deleteMovie(Long movieId);
 
-    long countMovies();
+    MovieCounterDto countMovies();
 }
